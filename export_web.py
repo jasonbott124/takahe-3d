@@ -9,9 +9,10 @@ Usage (in the session where you already build the figure):
     layers_3D.AGE_KEY.update(CURRENT_AGES)      # BEFORE plot_layers_3d
     fig = layers_3D.plot_layers_3d(..., step=10, res=2000)   # lighter for phones
     export_for_web(fig, "index.html")
-Then commit index.html to the takahe-3d repo.
+Then copy index.html into the takahe-3d repo and push.
 """
 import os
+import layers_3D
 
 # WD2014 tie at Y67a (Buizert 2015; Sigl 2016), in years.
 # D3 / D5 are not in the current dating list: check before publishing.
@@ -22,16 +23,25 @@ FG = "#e8edf3"
 
 
 def export_for_web(fig, out="index.html", title="Mt. Takahe: bed, ice surface and dated isochrones"):
+    # labels + coupled surface/contour opacity slider (safe to re-run on any version of the figure)
+    layers_3D.style_labels(fig)
+    layers_3D.add_surface_opacity_slider(fig)
+
     axis = dict(color=FG, gridcolor="rgba(255,255,255,0.15)", backgroundcolor=BG,
-                showbackground=True, zerolinecolor="rgba(255,255,255,0.25)")
+                showbackground=True, zerolinecolor="rgba(255,255,255,0.25)",
+                title_font=dict(size=13, family=layers_3D.LABEL_FONT))
     fig.update_layout(
-        title=dict(text=title, x=0.5, font=dict(size=14, color=FG)),
-        paper_bgcolor=BG, plot_bgcolor=BG, font=dict(color=FG, size=11),
+        title=dict(text=title, x=0.5, font=dict(size=15, color=FG, family=layers_3D.LABEL_FONT)),
+        paper_bgcolor=BG, plot_bgcolor=BG, font=dict(color=FG, size=12),
         margin=dict(l=0, r=0, t=40, b=0),
-        legend=dict(x=0.01, y=0.99, bgcolor="rgba(11,20,36,0.6)", font=dict(size=10, color=FG),
+        legend=dict(x=0.01, y=0.99, bgcolor="rgba(11,20,36,0.6)", font=dict(size=11, color=FG),
                     itemclick="toggle", itemdoubleclick="toggleothers"),
         scene=dict(xaxis=axis, yaxis=axis, zaxis=axis),
     )
+    if fig.layout.sliders:
+        fig.layout.sliders[0].update(font=dict(color=FG), bgcolor="#2a3a52",
+                                     activebgcolor="#f7d417", bordercolor=FG,
+                                     currentvalue=dict(font=dict(color=FG)))
     fig.update_traces(selector=dict(type="surface"),
                       colorbar=dict(tickfont=dict(color=FG), title_font=dict(color=FG), thickness=12))
     fig.write_html(
