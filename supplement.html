@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Takahe 3D: Supplemental materials</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+<style>
+  :root{--bg:#0b1424;--fg:#e8edf3;--mute:#9fb0c4;--acc:#f7d417;--line:rgba(255,255,255,.12);--card:#13213a}
+  html,body{margin:0;background:var(--bg);color:var(--fg);
+            font:15px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  main{max-width:780px;margin:0 auto;padding:18px 18px 48px}
+  a{color:var(--acc)}
+  .back{display:inline-block;margin:0 8px 14px 0;padding:6px 12px;border:1px solid rgba(255,255,255,.3);
+        border-radius:4px;background:#2a3a52;color:var(--fg);text-decoration:none;font-size:13px}
+  h1{font-size:20px;line-height:1.3;margin:6px 0 4px}
+  .sub{color:var(--mute);font-size:13px;margin:0}
+  nav.toc{font-size:13px;margin:14px 0 0;line-height:1.9}
+  nav.toc a{margin-right:12px;white-space:nowrap}
+  h2{font-size:17px;margin:32px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+  h3{font-size:14px;margin:20px 0 6px;color:var(--acc)}
+  p,li{font-size:14.5px}
+  .katex-display{overflow-x:auto;overflow-y:hidden;padding:4px 0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px 14px;margin:10px 0}
+  .tbl{overflow-x:auto}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;margin:8px 0}
+  th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+  th{color:var(--mute);font-weight:600}
+  tr.me td{background:rgba(247,212,23,.12);font-weight:600}
+  .ok{color:#7fd1a0}.no{color:#f08080}
+  .note{color:var(--mute);font-size:12.5px}
+  footer{margin-top:36px;color:var(--mute);font-size:12px}
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="./">&larr; 3D figure</a><a class="back" href="about.html">Acknowledgements &amp; references</a>
+
+  <h1>Supplemental materials</h1>
+  <p class="sub">Late-Holocene Subglacial Volcanism at Mount Takahe, Thwaites Glacier, West Antarctica &middot; J. Bott et al.</p>
+  <nav class="toc">
+    <a href="#question">Question</a><a href="#approach">Approach</a><a href="#dating">Dating</a>
+    <a href="#tests">Hypothesis tests</a><a href="#heat">Heat-flux estimate</a><a href="#nye">Nye-with-melt model</a>
+    <a href="#friction">Frictional melt</a><a href="#compare">Comparisons</a><a href="#limits">Limitations</a><a href="#code">Code</a>
+  </nav>
+
+  <!-- ============================================================ -->
+  <h2 id="question">Question and observation</h2>
+  <p><b>Question:</b> is the drawdown of radar isochrones on Mount Takahe&rsquo;s flank caused by subglacial volcanic heat?</p>
+  <p>Airborne radar from the 2004/05 AGASEA survey (UTIG) shows isochrones on Takahe&rsquo;s flank drawn down 200&ndash;300&nbsp;m over 1&ndash;3&nbsp;km. These one-sided monoclines ignore the bed topography and dip toward Takahe. They first appear between lines X45a and X47a, while X43a upstream is undisturbed. They are then carried downstream into streaming ice. The infill at line Y17a ended before 0.59&nbsp;ka.</p>
+
+  <!-- SKETCH: conceptual sketch of drawdown vs. folding goes here -->
+
+  <!-- ============================================================ -->
+  <h2 id="approach">Approach and rationale</h2>
+  <p>First rule out the ordinary ways to deform ice layers: folding, uneven snowfall, frictional melting and regional geothermal heat. Then estimate how much basal heat is needed to explain what remains, and compare that number with known volcanic and geothermal systems.</p>
+
+  <!-- ============================================================ -->
+  <h2 id="dating">Isochrone dating</h2>
+  <p>Isochrones are traced to line Y67a, 7.3&nbsp;km from the WAIS Divide ice core, and dated with the WD2014 chronology (Buizert et al., 2015; Sigl et al., 2016).</p>
+  <div class="tbl"><table>
+    <tr><th>Layer</th><th>Age (ka)</th></tr>
+    <tr><td>D1</td><td>0.592 &plusmn; 0.014</td></tr>
+    <tr><td>D2</td><td>1.185 &plusmn; 0.025</td></tr>
+    <tr><td>D7</td><td>1.778 &plusmn; 0.038</td></tr>
+    <tr><td>D4</td><td>2.224 &plusmn; 0.045</td></tr>
+    <tr><td>D6</td><td>4.260 &plusmn; 0.099</td></tr>
+  </table></div>
+
+  <!-- ============================================================ -->
+  <h2 id="tests">Hypothesis tests</h2>
+  <div class="tbl"><table>
+    <tr><th>Hypothesis</th><th>Test</th><th>Result</th></tr>
+    <tr><td>Folding / convergent strain</td><td>Onset sits in a divergent / shear regime. Folding thickens every interval by the same factor (Jansen et al., 2024), so the trough/flank thickness ratio should be constant with depth.</td><td class="no">Unlikely: the ratio is 1.74&times; for D2&ndash;D7 but &asymp;1&times; for D7&ndash;D4.</td></tr>
+    <tr><td>Extra accumulation</td><td>Snowfall needed to infill the trough.</td><td class="no">Unlikely: needs ~0.4&nbsp;m/yr extra, focused over a few km, with a flat surface.</td></tr>
+    <tr><td>Frictional melt</td><td>Basal energy balance after Beem et al. (2010).</td><td class="no">Too small: &le; ~2&nbsp;cm/yr.</td></tr>
+    <tr><td>Background / rift geothermal flux</td><td>0.05&ndash;0.6&nbsp;W/m&sup2;.</td><td class="no">Too small.</td></tr>
+    <tr><td>Volcanic heat</td><td>Required basal flux from the infill (below).</td><td class="ok">Consistent with all observations.</td></tr>
+  </table></div>
+
+  <!-- ============================================================ -->
+  <h2 id="heat">Heat-flux estimate from infill</h2>
+  <p>If the extra thickness of an interval in the trough, compared with the flank, is ice that was melted from below and replaced while that interval was being deposited, then the minimum basal melt rate is the excess thickness divided by the interval&rsquo;s duration:</p>
+  $$\dot m \;\ge\; \frac{\Delta h_{\text{trough}} - \Delta h_{\text{flank}}}{t_{D7} - t_{D2}}$$
+  <p>Melting that ice takes latent heat, so the basal heat flux must be at least</p>
+  $$q \;\ge\; \rho_i\,L\,\dot m$$
+  <p class="note">\(\rho_i\) = ice density (917&nbsp;kg/m&sup3;), \(L\) = latent heat of fusion (3.34&times;10&#8309;&nbsp;J/kg). With \(\dot m\) in m/yr, divide by 3.156&times;10&#8311;&nbsp;s/yr. 1&nbsp;m/yr of melt &asymp; 10&nbsp;W/m&sup2;.</p>
+  <div class="card">
+    <b>Line X47a, interval D2&ndash;D7</b><br>
+    Trough/flank thickness ratio 1.74&times; &middot; excess 101&nbsp;m over 593&nbsp;yr<br>
+    &rarr; \(\dot m \ge\) 171&nbsp;mm/yr &rarr; <b>\(q \ge\) 1.66&nbsp;W/m&sup2;</b><br>
+    D7&ndash;D4: ratio &asymp;1&times;, so no depression had formed yet.
+  </div>
+  <p>This is a lower bound: it ignores heat used to warm the ice to the melting point and heat carried away by meltwater. It also averages over the whole 593-year interval.</p>
+
+  <!-- ============================================================ -->
+  <h2 id="nye">Nye model with basal melt</h2>
+  <p>Following Fahnestock et al. (2001), the age&ndash;depth relation of a steady ice column is set by its vertical velocity. In the Nye model, vertical velocity falls linearly from the accumulation rate \(\lambda_H\) at the surface to zero at the bed. That gives the age at height \(z\) above the bed in ice of thickness \(H\):</p>
+  $$t(z) = \frac{H}{\lambda_H}\,\ln\!\frac{H}{z}$$
+  <p>With basal melt \(\dot m\), the velocity instead falls to \(\dot m\) at the bed, so layers sink faster:</p>
+  $$t_m(z) = -\frac{H}{\lambda_H - \dot m}\,\ln\!\left[\frac{\dot m}{\lambda_H} + \left(1-\frac{\dot m}{\lambda_H}\right)\frac{z}{H}\right]$$
+  <p>The age of the ice at the bed becomes finite, because older ice has been melted away:</p>
+  $$t_{\text{bed}} = \frac{H}{\lambda_H - \dot m}\,\ln\!\frac{\lambda_H}{\dot m}$$
+  <p>\(\lambda_H\) and \(\dot m\) are fitted to the dated layers by minimising the relative age misfit</p>
+  $$F = \sum_i \left(\frac{t_{\text{model}}(d_i) - t_i}{t_i}\right)^{2}$$
+  <p>Shallow layers constrain \(\lambda_H\) (near the surface, depth &asymp; \(\lambda_H\)&nbsp;&times;&nbsp;age) and deep layers constrain \(\dot m\).</p>
+  <p class="note">Assumptions: steady state, ice-equivalent depths (firn air removed), and a column that is not advecting in from elsewhere. Valid for the slow flank ice, not for streaming ice. If melt began recently, a steady-melt fit underestimates the true rate.</p>
+
+  <!-- SKETCH: Nye vs Nye-with-melt age-depth sketch goes here -->
+
+  <!-- ============================================================ -->
+  <h2 id="friction">Frictional melt (Beem et al., 2010 method)</h2>
+  <p>Basal melt from a basal energy balance: frictional heating from basal drag and sliding speed, plus geothermal flux, minus heat conducted up into the ice. Basal drag is estimated from surface speed, and the result is run as a Monte Carlo over the uncertain inputs.</p>
+  $$\dot m = \frac{\tau_b\,u_b + G - k\,\left.\dfrac{\partial T}{\partial z}\right|_{\text{bed}}}{\rho_i\,L}$$
+  <p class="note">\(\tau_b\) = basal drag, \(u_b\) = sliding speed, \(G\) = geothermal flux, \(k\) = thermal conductivity of ice. Assumes a bed at the melting point and no sideways heat transport.</p>
+  <p>Result along the shear margin: &le; ~2&nbsp;cm/yr. That is nearly an order of magnitude short of the &ge;171&nbsp;mm/yr the infill needs.</p>
+
+  <!-- ============================================================ -->
+  <h2 id="compare">How the estimate compares</h2>
+  <div class="tbl"><table>
+    <tr><th>Setting</th><th>Heat flux (W/m&sup2;)</th><th>Source</th></tr>
+    <tr><td>Hawaiian swell, excess over background</td><td>0.007&ndash;0.012</td><td>Von Herzen et al. 1982</td></tr>
+    <tr><td>Continental background</td><td>0.065</td><td>Wang &amp; Pang 2023</td></tr>
+    <tr><td>Malawi Rift, incl. Rungwe volcanic province</td><td>0.053&ndash;0.082</td><td>Njinju et al. 2019</td></tr>
+    <tr><td>Rio Grande Rift / San Juan volcanic field</td><td>0.107&ndash;0.119 (local &gt;0.17)</td><td>Reiter et al. 1979</td></tr>
+    <tr><td>Amundsen Sea / Thwaites</td><td>0.05&ndash;0.23</td><td>Dziadek et al. 2021</td></tr>
+    <tr><td>Thwaites basin average / hotspots</td><td>0.114 / &gt;0.2</td><td>Schroeder et al. 2014</td></tr>
+    <tr><td>Iceland volcanic zone</td><td>0.215 conductive; ~0.56 total*</td><td>P&aacute;lmason 1973</td></tr>
+    <tr><td>Northeast Greenland Ice Stream onset (proposed)</td><td>~0.97</td><td>Fahnestock et al. 2001</td></tr>
+    <tr class="me"><td>Takahe, X47a infill (this study, lower bound)</td><td>&ge; 1.66</td><td>&mdash;</td></tr>
+    <tr><td>Yellowstone caldera average</td><td>1.5&ndash;2.2</td><td>Wang &amp; Pang 2023</td></tr>
+    <tr><td>Katla caldera, long-term</td><td>~2&ndash;4*</td><td>Gu&eth;mundsson et al. 2007</td></tr>
+    <tr><td>Yellowstone Lake: Deep Hole / Mary Bay</td><td>5.0 / 15.6</td><td>Wang &amp; Pang 2023</td></tr>
+    <tr><td>Yellowstone steam-heated basins</td><td>30&ndash;35</td><td>Wang &amp; Pang 2023</td></tr>
+    <tr><td>Eruption (Katla 1999)</td><td>10&#8308;&ndash;10&#8309;</td><td>Gu&eth;mundsson et al. 2007</td></tr>
+  </table></div>
+  <p class="note">* Derived by dividing a reported power (MW) by an area; not stated in the source as W/m&sup2;. Pine Island&rsquo;s volcanic source (~2500&nbsp;&plusmn;&nbsp;1700&nbsp;MW; Loose et al., 2018) is reported only as power.</p>
+  <p>Rifts and plumes, even Iceland&rsquo;s whole volcanic zone, stay below ~0.6&nbsp;W/m&sup2;. Only active calderas reach Takahe&rsquo;s range. Steady conduction through the lithosphere can&rsquo;t supply this; it needs magma or hydrothermal advection. This points to a localized, sustained geothermal source rather than a regional rift flux or an eruption.</p>
+  <p class="note">Caveat: most comparison values are surface fluxes measured on land. Takahe&rsquo;s is a basal flux inferred from melt and averaged over ~600 years. Compare orders of magnitude, not decimals.</p>
+
+  <!-- ============================================================ -->
+  <h2 id="limits">Limitations</h2>
+  <ul>
+    <li><b>Dating:</b> ages come from a tie 7.3&nbsp;km from the WAIS Divide core and carry the uncertainties above.</li>
+    <li><b>Sampling:</b> 2D radar transects sample a 3D feature, from a single survey (2004/05) with no repeat.</li>
+    <li><b>Flow paths:</b> flowlines are poorly constrained in slow flank ice. The strongest evidence for a localized source is that X43a and X45a show no feature.</li>
+    <li><b>Strain:</b> strain at depth is not excluded without ice-flow modelling.</li>
+    <li><b>Heat estimate:</b> it is a lower bound. It assumes all excess thickness is replaced melted ice, and other distributions of heat could produce the same layers (the inversion is non-unique).</li>
+    <li><b>Models:</b> the Nye model assumes steady state and no advection, which does not hold in streaming ice.</li>
+    <li><b>Direct evidence:</b> there is no direct observation yet of meltwater, a volcanic edifice, or tephra at the site. The surface depression is inferred, not observed.</li>
+  </ul>
+
+  <!-- ============================================================ -->
+  <h2 id="code">Code</h2>
+  <p>Analysis code, including the 3D figure (<code>layers_3D.py</code>), is in <a href="https://github.com/jasonbott124/TAKAHE_PROJ">github.com/jasonbott124/TAKAHE_PROJ</a>. This site&rsquo;s source is in <a href="https://github.com/jasonbott124/takahe-3d">github.com/jasonbott124/takahe-3d</a>.</p>
+
+  <footer>Full references: <a href="about.html#refs">Acknowledgements &amp; references</a></footer>
+</main>
+</body>
+</html>
