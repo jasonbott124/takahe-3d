@@ -32,6 +32,14 @@
   tr.me td{background:rgba(247,212,23,.12);font-weight:600}
   .ok{color:#7fd1a0}.no{color:#f08080}
   .note{color:var(--mute);font-size:12.5px}
+  figure{margin:14px 0}
+  figure img{width:100%;height:auto;border-radius:4px;border:1px solid var(--line);display:block}
+  figcaption{color:var(--mute);font-size:12.5px;margin-top:5px}
+  .pair{display:grid;grid-template-columns:1fr;gap:6px}
+  @media (min-width:700px){.pair{grid-template-columns:1fr 1fr}}
+  .stepper .ctl{display:flex;align-items:center;gap:8px;margin-top:6px}
+  .stepper button{background:#2a3a52;color:var(--fg);border:1px solid rgba(255,255,255,.3);border-radius:4px;padding:6px 12px;font:inherit}
+  .stepper .n{color:var(--mute);font-size:12.5px}
   footer{margin-top:36px;color:var(--mute);font-size:12px}
 </style>
 </head>
@@ -42,17 +50,25 @@
   <h1>Supplemental materials</h1>
   <p class="sub">Late-Holocene Subglacial Volcanism at Mount Takahe, Thwaites Glacier, West Antarctica &middot; J. Bott et al.</p>
   <nav class="toc">
-    <a href="#question">Question</a><a href="#approach">Approach</a><a href="#dating">Dating</a>
+    <a href="#context">Setting</a><a href="#question">Question</a><a href="#approach">Approach</a><a href="#dating">Dating</a>
     <a href="#tests">Hypothesis tests</a><a href="#heat">Heat-flux estimate</a><a href="#nye">Nye-with-melt model</a>
-    <a href="#friction">Frictional melt</a><a href="#compare">Comparisons</a><a href="#limits">Limitations</a><a href="#code">Code</a>
+    <a href="#friction">Frictional melt</a><a href="#compare">Comparisons</a><a href="#model">Conceptual model</a><a href="#limits">Limitations</a><a href="#code">Code</a>
   </nav>
+
+  <!-- ============================================================ -->
+  <h2 id="context">Setting</h2>
+  <figure><a href="img/thwaites_new_mexico.jpg"><img src="img/thwaites_new_mexico.jpg" alt="Thwaites Glacier, West Antarctica, with the state of New Mexico for scale" loading="lazy"></a>
+    <figcaption>Thwaites Glacier, West Antarctica, with the state of New Mexico for scale.</figcaption></figure>
+  <!-- TODO: credit the base map source before publishing -->
+  <figure><a href="img/eruptive_history.jpg"><img src="img/eruptive_history.jpg" alt="Mount Takahe&rsquo;s dated eruptive history on a logarithmic time axis" loading="lazy"></a>
+    <figcaption>Mount Takahe&rsquo;s dated eruptive history on a logarithmic time axis. Outcrop ages: LeMasurier et al. (2018); continent-wide tephra: Wilch et al. (1999), McConnell et al. (2017). The radar-recorded melt window (orange bar) is from this study.</figcaption></figure>
+  <p>Takahe is a large polygenetic volcano with dated activity from ~192&nbsp;ka into the Holocene. Seismic data show long-period earthquakes beneath it consistent with active magmatic transport at crustal depths (Lucas et al., 2025).</p>
 
   <!-- ============================================================ -->
   <h2 id="question">Question and observation</h2>
   <p><b>Question:</b> is the drawdown of radar isochrones on Mount Takahe&rsquo;s flank caused by subglacial volcanic heat?</p>
   <p>Airborne radar from the 2004/05 AGASEA survey (UTIG) shows isochrones on Takahe&rsquo;s flank drawn down 200&ndash;300&nbsp;m over 1&ndash;3&nbsp;km. These one-sided monoclines ignore the bed topography and dip toward Takahe. They first appear between lines X45a and X47a, while X43a upstream is undisturbed. They are then carried downstream into streaming ice. The infill at line Y17a ended before 0.59&nbsp;ka.</p>
 
-  <!-- SKETCH: conceptual sketch of drawdown vs. folding goes here -->
 
   <!-- ============================================================ -->
   <h2 id="approach">Approach and rationale</h2>
@@ -69,6 +85,15 @@
     <tr><td>D4</td><td>2.224 &plusmn; 0.045</td></tr>
     <tr><td>D6</td><td>4.260 &plusmn; 0.099</td></tr>
   </table></div>
+  <p>Layers were picked in Landmark DecisionSpace Desktop and traced across the AGASEA grid. Firn-corrected radar depths were matched to the WD2014 age&ndash;depth scale.</p>
+  <div class="pair">
+  <figure><a href="img/landmark_picking_1.jpg"><img src="img/landmark_picking_1.jpg" alt="Picking dated horizons on line X47a in Landmark DecisionSpace Desktop" loading="lazy"></a>
+    <figcaption>Picking dated horizons on line X47a in Landmark DecisionSpace Desktop.</figcaption></figure>
+  <figure><a href="img/landmark_picking_2.jpg"><img src="img/landmark_picking_2.jpg" alt="Close-up of auto-tracking a horizon in DecisionSpace" loading="lazy"></a>
+    <figcaption>Close-up of auto-tracking a horizon in DecisionSpace.</figcaption></figure>
+  </div>
+  <figure><a href="img/layer_extents.jpg"><img src="img/layer_extents.jpg" alt="Extent and elevation of each dated isochrone traced from the WAIS Divide core (yellow star) to Mt" loading="lazy"></a>
+    <figcaption>Extent and elevation of each dated isochrone traced from the WAIS Divide core (yellow star) to Mt. Takahe (red triangle).</figcaption></figure>
 
   <!-- ============================================================ -->
   <h2 id="tests">Hypothesis tests</h2>
@@ -81,6 +106,25 @@
     <tr><td>Volcanic heat</td><td>Required basal flux from the infill (below).</td><td class="ok">Consistent with all observations.</td></tr>
   </table></div>
 
+
+  <h3>Mechanical: lateral compression and folding</h3>
+  <div class="pair">
+  <figure><a href="img/lateral_compression_1.jpg"><img src="img/lateral_compression_1.jpg" alt="Sketch: across-flow cross-section of a shear margin with speed contours" loading="lazy"></a>
+    <figcaption>Sketch: across-flow cross-section of a shear margin with speed contours.</figcaption></figure>
+  <figure><a href="img/lateral_compression_2.jpg"><img src="img/lateral_compression_2.jpg" alt="Sketch: lateral compression folds every layer, so folding should thicken all intervals by the same factor" loading="lazy"></a>
+    <figcaption>Sketch: lateral compression folds every layer, so folding should thicken all intervals by the same factor.</figcaption></figure>
+  </div>
+  <figure><a href="img/jansen2024_folding.jpg"><img src="img/jansen2024_folding.jpg" alt="Fold formation under convergent flow (a) and convergent flow plus shearing (b)" loading="lazy"></a>
+    <figcaption>Fold formation under convergent flow (a) and convergent flow plus shearing (b). Reproduced from Jansen et al. (2024), <i>Nature Communications</i>, open access under CC BY 4.0.</figcaption></figure>
+
+  <h3>Thermodynamic: shear-margin heating</h3>
+  <div class="pair">
+  <figure><a href="img/shear_margin_thermo_1.jpg"><img src="img/shear_margin_thermo_1.jpg" alt="Sketch: strain heating and ice&ndash;rock friction at a Thwaites shear margin" loading="lazy"></a>
+    <figcaption>Sketch: strain heating and ice&ndash;rock friction at a Thwaites shear margin.</figcaption></figure>
+  <figure><a href="img/shear_margin_thermo_2.jpg"><img src="img/shear_margin_thermo_2.jpg" alt="Sketch: drawdown of cold ridge ice freezes the margin base and migrates the margin toward flow (Hunter et al" loading="lazy"></a>
+    <figcaption>Sketch: drawdown of cold ridge ice freezes the margin base and migrates the margin toward flow (Hunter et al., 2021; Meyer et al., 2018).</figcaption></figure>
+  </div>
+
   <!-- ============================================================ -->
   <h2 id="heat">Heat-flux estimate from infill</h2>
   <p>If the extra thickness of an interval in the trough, compared with the flank, is ice that was melted from below and replaced while that interval was being deposited, then the minimum basal melt rate is the excess thickness divided by the interval&rsquo;s duration:</p>
@@ -92,6 +136,7 @@
     <b>Line X47a, interval D2&ndash;D7</b><br>
     Trough/flank thickness ratio 1.74&times; &middot; excess 101&nbsp;m over 593&nbsp;yr<br>
     &rarr; \(\dot m \ge\) 171&nbsp;mm/yr &rarr; <b>\(q \ge\) 1.66&nbsp;W/m&sup2;</b><br>
+    Across the trough the required flux reaches 4.4&nbsp;W/m&sup2;, giving a range of <b>1.66&ndash;4.4&nbsp;W/m&sup2;</b>.<br>
     D7&ndash;D4: ratio &asymp;1&times;, so no depression had formed yet.
   </div>
   <p>This is a lower bound: it ignores heat used to warm the ice to the melting point and heat carried away by meltwater. It also averages over the whole 593-year interval.</p>
@@ -109,20 +154,27 @@
   <p>Shallow layers constrain \(\lambda_H\) (near the surface, depth &asymp; \(\lambda_H\)&nbsp;&times;&nbsp;age) and deep layers constrain \(\dot m\).</p>
   <p class="note">Assumptions: steady state, ice-equivalent depths (firn air removed), and a column that is not advecting in from elsewhere. Valid for the slow flank ice, not for streaming ice. If melt began recently, a steady-melt fit underestimates the true rate.</p>
 
-  <!-- SKETCH: Nye vs Nye-with-melt age-depth sketch goes here -->
+  <figure><a href="img/nye_melt_X45a.jpg"><img src="img/nye_melt_X45a.jpg" alt="Line X45a, upstream of the drawdown: observed isochrones (solid) against the Nye model with the calculated basal melt (dashed)" loading="lazy"></a>
+    <figcaption>Line X45a, upstream of the drawdown: observed isochrones (solid) against the Nye model with the calculated basal melt (dashed). Even with the shear-margin melt included (lower panel, 6&ndash;9&nbsp;mm/yr), the model matches the layers here, where there is no drawdown.</figcaption></figure>
 
   <!-- ============================================================ -->
   <h2 id="friction">Frictional melt (Beem et al., 2010 method)</h2>
   <p>Basal melt from a basal energy balance: frictional heating from basal drag and sliding speed, plus geothermal flux, minus heat conducted up into the ice. Basal drag is estimated from surface speed, and the result is run as a Monte Carlo over the uncertain inputs.</p>
   $$\dot m = \frac{\tau_b\,u_b + G - k\,\left.\dfrac{\partial T}{\partial z}\right|_{\text{bed}}}{\rho_i\,L}$$
   <p class="note">\(\tau_b\) = basal drag, \(u_b\) = sliding speed, \(G\) = geothermal flux, \(k\) = thermal conductivity of ice. Assumes a bed at the melting point and no sideways heat transport.</p>
+  <figure><a href="img/melt_strain_X43a.jpg"><img src="img/melt_strain_X43a.jpg" alt="Line X43a (undisturbed, upstream): MEaSUREs v2 surface speed, lateral strain rate, Monte Carlo basal melt and englacial layers" loading="lazy"></a>
+    <figcaption>Line X43a (undisturbed, upstream): MEaSUREs v2 surface speed, lateral strain rate, Monte Carlo basal melt and englacial layers.</figcaption></figure>
+  <figure><a href="img/melt_strain_X45a.jpg"><img src="img/melt_strain_X45a.jpg" alt="Line X45a: same panels" loading="lazy"></a>
+    <figcaption>Line X45a: same panels. Melt peaks at the shear margin near 165&nbsp;km.</figcaption></figure>
+  <figure><a href="img/melt_strain_X47a.jpg"><img src="img/melt_strain_X47a.jpg" alt="Line X47a, where the drawdown appears: same panels" loading="lazy"></a>
+    <figcaption>Line X47a, where the drawdown appears: same panels. Basal melt stays around 5&ndash;12&nbsp;mm/yr.</figcaption></figure>
   <p>Result along the shear margin: &le; ~2&nbsp;cm/yr. That is nearly an order of magnitude short of the &ge;171&nbsp;mm/yr the infill needs.</p>
 
   <!-- ============================================================ -->
   <h2 id="compare">How the estimate compares</h2>
   <div class="tbl"><table>
     <tr><th>Setting</th><th>Heat flux (W/m&sup2;)</th><th>Source</th></tr>
-    <tr><td>Hawaiian swell, excess over background</td><td>0.007&ndash;0.012</td><td>Von Herzen et al. 1982</td></tr>
+    <tr><td>Hawaiian swell, excess over background</td><td>0.007&ndash;0.012&dagger;</td><td>Von Herzen et al. 1982</td></tr>
     <tr><td>Continental background</td><td>0.065</td><td>Wang &amp; Pang 2023</td></tr>
     <tr><td>Malawi Rift, incl. Rungwe volcanic province</td><td>0.053&ndash;0.082</td><td>Njinju et al. 2019</td></tr>
     <tr><td>Rio Grande Rift / San Juan volcanic field</td><td>0.107&ndash;0.119 (local &gt;0.17)</td><td>Reiter et al. 1979</td></tr>
@@ -130,16 +182,34 @@
     <tr><td>Thwaites basin average / hotspots</td><td>0.114 / &gt;0.2</td><td>Schroeder et al. 2014</td></tr>
     <tr><td>Iceland volcanic zone</td><td>0.215 conductive; ~0.56 total*</td><td>P&aacute;lmason 1973</td></tr>
     <tr><td>Northeast Greenland Ice Stream onset (proposed)</td><td>~0.97</td><td>Fahnestock et al. 2001</td></tr>
-    <tr class="me"><td>Takahe, X47a infill (this study, lower bound)</td><td>&ge; 1.66</td><td>&mdash;</td></tr>
     <tr><td>Yellowstone caldera average</td><td>1.5&ndash;2.2</td><td>Wang &amp; Pang 2023</td></tr>
+    <tr class="me"><td>Takahe (this study)</td><td>1.66&ndash;4.4</td><td>&mdash;</td></tr>
     <tr><td>Katla caldera, long-term</td><td>~2&ndash;4*</td><td>Gu&eth;mundsson et al. 2007</td></tr>
     <tr><td>Yellowstone Lake: Deep Hole / Mary Bay</td><td>5.0 / 15.6</td><td>Wang &amp; Pang 2023</td></tr>
     <tr><td>Yellowstone steam-heated basins</td><td>30&ndash;35</td><td>Wang &amp; Pang 2023</td></tr>
     <tr><td>Eruption (Katla 1999)</td><td>10&#8308;&ndash;10&#8309;</td><td>Gu&eth;mundsson et al. 2007</td></tr>
   </table></div>
-  <p class="note">* Derived by dividing a reported power (MW) by an area; not stated in the source as W/m&sup2;. Pine Island&rsquo;s volcanic source (~2500&nbsp;&plusmn;&nbsp;1700&nbsp;MW; Loose et al., 2018) is reported only as power.</p>
+  <p class="note">* Derived by dividing a reported power (MW) by an area; not stated in the source as W/m&sup2;. Pine Island&rsquo;s volcanic source (~2500&nbsp;&plusmn;&nbsp;1700&nbsp;MW; Loose et al., 2018) is reported only as power.<br>&dagger; Later measurements suggest this anomaly may have been overestimated and may be only ~5&ndash;10&nbsp;mW/m&sup2; (Von Herzen et al., 1989).</p>
   <p>Rifts and plumes, even Iceland&rsquo;s whole volcanic zone, stay below ~0.6&nbsp;W/m&sup2;. Only active calderas reach Takahe&rsquo;s range. Steady conduction through the lithosphere can&rsquo;t supply this; it needs magma or hydrothermal advection. This points to a localized, sustained geothermal source rather than a regional rift flux or an eruption.</p>
   <p class="note">Caveat: most comparison values are surface fluxes measured on land. Takahe&rsquo;s is a basal flux inferred from melt and averaged over ~600 years. Compare orders of magnitude, not decimals.</p>
+
+  <!-- ============================================================ -->
+  <h2 id="model">Conceptual model</h2>
+  <div class="stepper" id="stepper">
+    <a id="stepLink" href="img/sketch_1.jpg"><img id="stepImg" src="img/sketch_1.jpg" alt="Conceptual sketch of Takahe" style="width:100%;height:auto;border-radius:4px;border:1px solid var(--line);display:block"></a>
+    <div class="ctl"><button id="prev" type="button">&larr;</button><button id="next" type="button">&rarr;</button><span class="n" id="stepN"></span></div>
+    <p id="stepCap"></p>
+  </div>
+  <script>
+  (function(){var S=[["sketch_1", "Anomalous basal melt on Takahe&rsquo;s flank, under stagnant ridge ice beside the internal shear margin; vertical advection increases above it."], ["sketch_2", "An intrusion branches off the primary conduit beneath the flank."], ["sketch_3", "Meltwater collects beneath the ice above the intrusion."], ["sketch_4", "The intrusion cools and the meltwater drains into the sedimentary basin."], ["sketch_5", "Cold ice and snow are drawn down into the resulting depression, recording the drawdown in the isochrones."]];var i=0;
+   var img=document.getElementById('stepImg'),a=document.getElementById('stepLink'),cap=document.getElementById('stepCap'),n=document.getElementById('stepN');
+   S.forEach(function(s){new Image().src='img/'+s[0]+'.jpg';});
+   function show(){img.src=a.href='img/'+S[i][0]+'.jpg';cap.innerHTML=S[i][1];n.textContent=(i+1)+' / '+S.length;}
+   document.getElementById('prev').onclick=function(){i=(i+S.length-1)%S.length;show();};
+   document.getElementById('next').onclick=function(){i=(i+1)%S.length;show();};
+   show();})();
+  </script>
+  <p class="note">Schematic hypothesis, not to scale.</p>
 
   <!-- ============================================================ -->
   <h2 id="limits">Limitations</h2>
