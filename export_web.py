@@ -91,14 +91,15 @@ PAGE = """<!DOCTYPE html>
   @media (max-width:700px){ .modebar-container{display:none} }
   .btns{display:flex;gap:6px}
   #zin,#zout{min-width:40px;font-size:16px;font-weight:600}
-  button{background:#2a3a52;color:{FG};border:1px solid rgba(255,255,255,.3);border-radius:4px;
+  button,.btn{background:#2a3a52;color:{FG};border:1px solid rgba(255,255,255,.3);border-radius:4px;
          padding:6px 10px;font:inherit}
+  .btn{text-decoration:none;display:inline-flex;align-items:center}
 </style>
 </head>
 <body>
 <div id="wrap">
   <div id="plotbox">{PLOT}</div>
-  <div id="ctl"><div class="btns"><button id="zin" type="button" aria-label="Zoom in">+</button><button id="zout" type="button" aria-label="Zoom out">&minus;</button><button id="zreset" type="button">Reset</button><button id="leg" type="button">Legend</button></div></div>
+  <div id="ctl"><div class="btns"><button id="zin" type="button" aria-label="Zoom in">+</button><button id="zout" type="button" aria-label="Zoom out">&minus;</button><button id="zreset" type="button">Reset</button><button id="leg" type="button">Legend</button><a id="about" class="btn" href="about.html">About</a></div></div>
 </div>
 <script>
 (function init(){
