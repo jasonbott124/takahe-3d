@@ -94,12 +94,13 @@ PAGE = """<!DOCTYPE html>
   button,.btn{background:#2a3a52;color:{FG};border:1px solid rgba(255,255,255,.3);border-radius:4px;
          padding:6px 10px;font:inherit}
   .btn{text-decoration:none;display:inline-flex;align-items:center}
+  .btn.icon{padding:6px 9px}
 </style>
 </head>
 <body>
 <div id="wrap">
   <div id="plotbox">{PLOT}</div>
-  <div id="ctl"><div class="btns"><button id="zin" type="button" aria-label="Zoom in">+</button><button id="zout" type="button" aria-label="Zoom out">&minus;</button><button id="zreset" type="button">Reset</button><button id="leg" type="button">Legend</button><a id="about" class="btn" href="about.html">About</a></div></div>
+  <div id="ctl"><div class="btns"><button id="zin" type="button" aria-label="Zoom in">+</button><button id="zout" type="button" aria-label="Zoom out">&minus;</button><button id="zreset" type="button">Reset</button><button id="leg" type="button">Legend</button><a id="refs" class="btn icon" href="about.html" title="References &amp; acknowledgements" aria-label="References and acknowledgements"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a><a id="supp" class="btn icon" href="supplement.html" title="Supplemental materials" aria-label="Supplemental materials"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6"/><path d="M10 3v6L4.5 18.5A2 2 0 0 0 6.2 21.5h11.6a2 2 0 0 0 1.7-3L14 9V3"/><path d="M7 15h10"/></svg></a></div></div>
 </div>
 <script>
 (function init(){
